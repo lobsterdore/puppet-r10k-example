@@ -6,9 +6,6 @@ class profiles::common {
     # sshd config
     include profiles::ssh::server
 
-    # dns config
-    include profiles::dns::client
-
     # base firewall config
     include profiles::firewall::setup
 

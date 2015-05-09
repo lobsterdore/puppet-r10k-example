@@ -1,0 +1,4 @@
+---
+environment: production
+classes:
+  - roles::default

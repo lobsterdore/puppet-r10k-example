@@ -29,27 +29,9 @@ class profiles::firewall::pre {
         action => 'accept',
     }
 
-    # Accept all via vpn
-    firewall { '004 accept input via VPN':
-        chain   => 'INPUT',
-        iniface => 'tun+',
-        action  => 'accept',
-        proto   => 'all',
-    }
-
-    firewall { '005 accept input via VPN':
-        chain   => 'FORWARD',
-        iniface => 'tun+',
-        action  => 'accept',
-        proto   => 'all',
-    }
-
-    if $::vagrant == 1 {
-        # Allow standard ssh if running in Vagrant
-        firewall { '006 ssh 22':
-            port   => '22',
-            proto  => 'tcp',
-            action => 'accept',
-        }
+    firewall { '004 ssh 22':
+        port   => '22',
+        proto  => 'tcp',
+        action => 'accept',
     }
 }

@@ -1,0 +1,15 @@
+---
+users_common:
+  dreed:
+    ensure: present
+    uid: 500
+    groups:
+      - sudo
+    comment: David Reed
+    managehome: true
+    password: '$6$ApGl6k6yjn5$WhWxKyiB74Mjms9qq91.eRHpavz.Crx/syUWcVj6JOdOgWvYonVpwMmRi9SRrQKQ9vklYfJRdmdR2TzHETy4F.'
+    shell:  /bin/bash
+    ssh_authorized_keys:
+      dreedkey:
+        type: 'ssh-rsa'
+        key:  'AAAAB3NzaC1yc2EAAAADAQABAAABAQCqPOg8DMpehFQEV9nawqgRTeIKp1Ty3g110XS08Q/pdV0AKSibBLR9HbgHcIPBMghYKVm5oHp/Uarhy5bMzaA/afytzPpboqIfn1In9oXbJhQ+cREfFdbi7TMJmBOqcXIOk76LhvgD/tG8ZQ0kXz9JEt9ucN6HEw4ue6WQoZco9peNNeuF2Nt8VO1fWHhr8CbaYTjPsvoLrejkQF9xhPDumF5AgxoVM2W7iJsp5yf5KU6BqLjyJRXSRGZRn1Td9SXR/EpLh0lORand0nILImIP1NUgYa/ohSWrgehJHgaO4rjutIOfUvA5h2HXf7d+cWH6fX4ueG380MoFtI7ocBaD'
