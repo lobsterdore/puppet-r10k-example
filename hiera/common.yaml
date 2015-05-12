@@ -1,4 +1,6 @@
 ---
+openvpn:
+  remote: 'vpn.techpunch.com'
 users_common:
   dreed:
     ensure: present

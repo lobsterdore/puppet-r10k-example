@@ -1,0 +1,17 @@
+client
+ca keys/ca.crt
+cert keys/<%= @fqdn %>.crt
+key keys/<%= @fqdn %>.key
+dev tun
+proto udp
+remote <%= @remote %> 1194
+comp-lzo
+resolv-retry infinite
+auth-retry none
+nobind
+persist-key
+persist-tun
+mute-replay-warnings
+ns-cert-type server
+verb 3
+mute 20
