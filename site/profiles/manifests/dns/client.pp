@@ -8,7 +8,7 @@ class profiles::dns::client {
         owner   => 'root',
         group   => 'root',
         mode    => '0644',
-        content => file('profiles/dns/etc/dnsmasq.conf'),
+        content => file('profiles/dns/dnsmasq.conf'),
     } ~>
     service { 'dnsmasq':
         ensure     => running,
