@@ -37,43 +37,28 @@ class profiles::vpn::server {
     }
 
     # Firewall rules
-    firewall { '200 VPN server allow 1194':
+
+    firewall { '201 VPN allow tun input':
+        chain   => 'INPUT',
+        proto   => 'all',
+        action  => 'accept',
+        iniface => 'tun+'
+    }
+
+    firewall { '202 VPN allow tun forward':
+        chain   => 'FOWARD',
+        proto   => 'all',
+        action  => 'accept',
+        iniface => 'tun+'
+    }
+
+    firewall { '203 VPN server allow client connections via 1194':
         port   => '1194',
         proto  => 'udp',
         action => 'accept',
     }
 
-    firewall { '201 vpn rules':
-        chain    => 'OUTPUT',
-        state    => ['NEW'],
-        outiface => 'eth0',
-        action   => 'accept',
-        proto    => 'all',
-    }
-
-    firewall { '202 vpn rules':
-        chain  => 'INPUT',
-        state  => ['ESTABLISHED', 'RELATED'],
-        action => 'accept',
-        proto  => 'all',
-    }
-
-    firewall { '203 vpn rules':
-        chain    => 'FORWARD',
-        state    => ['NEW'],
-        outiface => 'eth0',
-        action   => 'accept',
-        proto    => 'all',
-    }
-
-    firewall { '204 vpn rules':
-        chain  => 'FORWARD',
-        state  => ['ESTABLISHED', 'RELATED'],
-        action => 'accept',
-        proto  => 'all',
-    }
-
-    firewall { '205 vpn rules':
+    firewall { '204 VPN server masquerade outgoing vpn traffic':
         table    => 'nat',
         chain    => 'POSTROUTING',
         outiface => 'eth0',

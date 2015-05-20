@@ -13,8 +13,12 @@ user nobody
 status status.log
 dev tun0
 server 10.8.0.0 255.255.0.0
-keepalive 10 120
+keepalive 1 5
 topology net30
 client-to-client
-persist-key
 persist-tun
+persist-key
+persist-local-ip
+persist-remote-ip
+push "persist-key"
+push "persist-tun"

@@ -34,42 +34,18 @@ class profiles::vpn::client {
     }
 
     # Firewall rules
-    firewall { '201 vpn rules':
-        chain    => 'OUTPUT',
-        state    => ['NEW'],
-        outiface => 'eth0',
-        action   => 'accept',
-        proto    => 'all',
+
+    firewall { '201 allow tun input':
+        chain   => 'INPUT',
+        proto   => 'all',
+        action  => 'accept',
+        iniface => 'tun+'
     }
 
-    firewall { '202 vpn rules':
-        chain  => 'INPUT',
-        state  => ['ESTABLISHED', 'RELATED'],
-        action => 'accept',
-        proto  => 'all',
-    }
-
-    firewall { '203 vpn rules':
-        chain    => 'FORWARD',
-        state    => ['NEW'],
-        outiface => 'eth0',
-        action   => 'accept',
-        proto    => 'all',
-    }
-
-    firewall { '204 vpn rules':
-        chain  => 'FORWARD',
-        state  => ['ESTABLISHED', 'RELATED'],
-        action => 'accept',
-        proto  => 'all',
-    }
-
-    firewall { '205 vpn rules':
-        table    => 'nat',
-        chain    => 'POSTROUTING',
-        outiface => 'eth0',
-        source   => '10.8.0.0/24',
-        jump     => 'MASQUERADE',
-        proto    => 'all',
+    firewall { '202 allow tun forward':
+        chain   => 'FOWARD',
+        proto   => 'all',
+        action  => 'accept',
+        iniface => 'tun+'
     }
 }
