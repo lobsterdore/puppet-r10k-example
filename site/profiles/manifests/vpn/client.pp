@@ -3,6 +3,7 @@
 # Requires that dnsmasq be installed and running
 class profiles::vpn::client {
     $openvpn_config = hiera_hash('openvpn')
+    # Used in config file
     $remote = $openvpn_config['remote']
     package { 'openvpn':
         ensure  => present,

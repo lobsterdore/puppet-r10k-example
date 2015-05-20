@@ -1,11 +1,10 @@
 # Sets up OpenVPN server
 # Keys should be copied to server before puppet
 class profiles::vpn::server {
-
     $openvpn_config = hiera_hash('openvpn')
+    # Arrange config for client_config files
     $client_configs  = $openvpn_config['client-configs']
     $client_config_keys = keys($client_configs)
-
     package { 'openvpn':
         ensure => present
     } ->
