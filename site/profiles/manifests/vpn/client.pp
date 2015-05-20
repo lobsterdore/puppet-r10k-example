@@ -43,7 +43,7 @@ class profiles::vpn::client {
     }
 
     firewall { '202 allow tun forward':
-        chain   => 'FOWARD',
+        chain   => 'FORWARD',
         proto   => 'all',
         action  => 'accept',
         iniface => 'tun+'
