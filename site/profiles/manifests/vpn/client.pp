@@ -2,7 +2,7 @@
 # Keys should be copied to server before puppet runs
 # Requires that dnsmasq be installed and running
 class profiles::vpn::client {
-    $openvpn_config = hiera('openvpn')
+    $openvpn_config = hiera_hash('openvpn')
     $remote = $openvpn_config['remote']
     package { 'openvpn':
         ensure  => present,

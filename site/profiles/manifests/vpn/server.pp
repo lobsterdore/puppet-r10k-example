@@ -1,6 +1,11 @@
 # Sets up OpenVPN server
 # Keys should be copied to server before puppet
 class profiles::vpn::server {
+
+    $openvpn_config = hiera_hash('openvpn')
+    $client_configs  = $openvpn_config['client-configs']
+    $client_config_keys = keys($client_configs)
+
     package { 'openvpn':
         ensure => present
     } ->
@@ -16,11 +21,9 @@ class profiles::vpn::server {
         group  => 'root',
         mode   => '0666',
     } ->
-    profiles::vpn::client_config { 'dummy.techpunch.com':
-        ips     => '10.8.0.100 10.8.0.101'
-    } ->
-    profiles::vpn::client_config { 'home-computer':
-        ips     => '10.8.0.104 10.8.0.105'
+    profiles::vpn::client_config {
+        $client_config_keys:
+            config       => $client_configs;
     } ->
     file { "/etc/openvpn/${::fqdn}.conf":
         ensure  => present,
