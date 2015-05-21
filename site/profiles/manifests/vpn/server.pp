@@ -59,13 +59,4 @@ class profiles::vpn::server {
         proto  => 'udp',
         action => 'accept',
     }
-
-    firewall { '204 VPN server masquerade outgoing vpn traffic':
-        table    => 'nat',
-        chain    => 'POSTROUTING',
-        outiface => 'eth0',
-        source   => '10.8.0.0/24',
-        jump     => 'MASQUERADE',
-        proto    => 'all',
-    }
 }
