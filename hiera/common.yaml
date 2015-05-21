@@ -4,7 +4,7 @@ openvpn:
   client-configs:
     dummy.techpunch.com:
       ips:  '10.8.0.100 10.8.0.101'
-    home-computer:
+    remote-machine-dreed:
       ips:  '10.8.0.104 10.8.0.105'
 users_common:
   dreed:
