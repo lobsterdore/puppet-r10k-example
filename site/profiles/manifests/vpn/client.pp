@@ -33,20 +33,4 @@ class profiles::vpn::client {
             Service['dnsmasq'],
         ],
     }
-
-    # Firewall rules
-
-    firewall { '200 allow tun input':
-        chain   => 'INPUT',
-        proto   => 'all',
-        action  => 'accept',
-        iniface => 'tun+'
-    }
-
-    firewall { '201 allow tun forward':
-        chain   => 'FORWARD',
-        proto   => 'all',
-        action  => 'accept',
-        iniface => 'tun+'
-    }
 }
