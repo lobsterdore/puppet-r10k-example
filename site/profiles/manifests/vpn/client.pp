@@ -36,14 +36,14 @@ class profiles::vpn::client {
 
     # Firewall rules
 
-    firewall { '201 allow tun input':
+    firewall { 'VPN allow tun input':
         chain   => 'INPUT',
         proto   => 'all',
         action  => 'accept',
         iniface => 'tun+'
     }
 
-    firewall { '202 allow tun forward':
+    firewall { 'VPN allow tun forward':
         chain   => 'FORWARD',
         proto   => 'all',
         action  => 'accept',

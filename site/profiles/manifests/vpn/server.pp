@@ -40,21 +40,21 @@ class profiles::vpn::server {
 
     # Firewall rules
 
-    firewall { '201 VPN allow tun input':
+    firewall { 'VPN allow tun input':
         chain   => 'INPUT',
         proto   => 'all',
         action  => 'accept',
         iniface => 'tun+'
     }
 
-    firewall { '202 VPN allow tun forward':
+    firewall { 'VPN allow tun forward':
         chain   => 'FORWARD',
         proto   => 'all',
         action  => 'accept',
         iniface => 'tun+'
     }
 
-    firewall { '203 VPN server allow client connections via 1194':
+    firewall { 'VPN server allow client connections via 1194':
         port   => '1194',
         proto  => 'udp',
         action => 'accept',
