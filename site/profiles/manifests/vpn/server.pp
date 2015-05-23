@@ -38,8 +38,23 @@ class profiles::vpn::server {
         enable    => true,
     }
 
-    # Firewall rules
-    firewall { '200 VPN server allow client connections via 1194':
+    # Accept all via vpn
+    firewall { '200 accept input via VPN':
+        chain   => 'INPUT',
+        iniface => 'tun+',
+        action  => 'accept',
+        proto   => 'all',
+    }
+
+    firewall { '201 accept input via VPN':
+        chain   => 'FORWARD',
+        iniface => 'tun+',
+        action  => 'accept',
+        proto   => 'all',
+    }
+
+    # Allow vpn clients to connect
+    firewall { '203 VPN server allow client connections via 1194':
         port   => '1194',
         proto  => 'udp',
         action => 'accept',

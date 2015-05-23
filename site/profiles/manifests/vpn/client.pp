@@ -33,4 +33,19 @@ class profiles::vpn::client {
             Service['dnsmasq'],
         ],
     }
+
+    # Accept all via vpn
+    firewall { '200 accept input via VPN':
+        chain   => 'INPUT',
+        iniface => 'tun+',
+        action  => 'accept',
+        proto   => 'all',
+    }
+
+    firewall { '201 accept input via VPN':
+        chain   => 'FORWARD',
+        iniface => 'tun+',
+        action  => 'accept',
+        proto   => 'all',
+    }
 }
