@@ -3,7 +3,7 @@
 define profiles::vpn::client_config (
     $config
 ) {
-    $ips = $config[$name]['ips']
+    $ips = $config['ips']
     file { "/etc/openvpn/client-configs/${name}":
         ensure  => present,
         owner   => 'root',

@@ -22,10 +22,6 @@ class profiles::vpn::server (
         group  => 'root',
         mode   => '0666',
     } ->
-    create_resource(
-        profiles::vpn::client_config,
-        $client_configs
-    ) ->
     file { "/etc/openvpn/${::fqdn}.conf":
         ensure  => present,
         owner   => 'root',
@@ -39,6 +35,11 @@ class profiles::vpn::server (
         hasstatus => true,
         enable    => true,
     }
+
+    create_resource(
+        profiles::vpn::client_config,
+        $client_configs
+    )
 
     # Accept all via vpn
     firewall { '200 accept input via VPN':
