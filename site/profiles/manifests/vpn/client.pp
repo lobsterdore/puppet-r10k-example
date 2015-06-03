@@ -1,10 +1,9 @@
 # OpenVPN client setup
 # Keys should be copied to server before puppet runs
 # Requires that dnsmasq be installed and running
-class profiles::vpn::client {
-    $openvpn_config = hiera_hash('openvpn')
-    # Used in config file
-    $remote = $openvpn_config['remote']
+class profiles::vpn::client (
+    $remote
+) {
     package { 'openvpn':
         ensure  => present,
         require => [

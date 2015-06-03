@@ -36,7 +36,7 @@ class profiles::vpn::server (
         enable    => true,
     }
 
-    create_resource(
+    create_resources (
         profiles::vpn::client_config,
         $client_configs
     )
