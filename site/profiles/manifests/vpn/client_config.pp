@@ -1,5 +1,4 @@
 # Creates client config files on OpenVPN server
-# Takes a hash of client configs and uses the resource name as key
 define profiles::vpn::client_config (
     $ips
 ) {

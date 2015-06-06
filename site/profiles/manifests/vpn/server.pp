@@ -3,10 +3,6 @@
 class profiles::vpn::server (
     $client_configs
 ) {
-    #$openvpn_config = hiera_hash('openvpn')
-    # Arrange config for client_config files
-    #$client_configs  = $openvpn_config['client-configs']
-    #$client_config_keys = keys($client_configs)
     package { 'openvpn':
         ensure => present
     } ->
