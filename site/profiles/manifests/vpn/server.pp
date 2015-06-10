@@ -3,6 +3,9 @@
 class profiles::vpn::server (
     $client_configs
 ) {
+    # Arrange config for client_config files
+    $client_config_keys = keys($client_configs)
+
     package { 'openvpn':
         ensure => present
     } ->
@@ -17,6 +20,10 @@ class profiles::vpn::server (
         owner  => 'root',
         group  => 'root',
         mode   => '0666',
+    } ->
+    profiles::vpn::client_config {
+        $client_config_keys:
+            config => $client_configs;
     } ->
     file { "/etc/openvpn/${::fqdn}.conf":
         ensure  => present,
