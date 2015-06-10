@@ -39,11 +39,6 @@ class profiles::vpn::server (
         enable    => true,
     }
 
-    create_resources (
-        profiles::vpn::client_config,
-        $client_configs
-    )
-
     # Accept all via vpn
     firewall { '200 accept input via VPN':
         chain   => 'INPUT',
