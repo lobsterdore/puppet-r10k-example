@@ -3,9 +3,6 @@
 class profiles::vpn::server (
     $client_configs
 ) {
-    # Arrange config for client_config files
-    $client_config_keys = keys($client_configs)
-
     package { 'openvpn':
         ensure => present
     } ->
@@ -21,10 +18,6 @@ class profiles::vpn::server (
         group  => 'root',
         mode   => '0666',
     } ->
-    profiles::vpn::client_config {
-        $client_config_keys:
-            config => $client_configs;
-    } ->
     file { "/etc/openvpn/${::fqdn}.conf":
         ensure  => present,
         owner   => 'root',
@@ -38,6 +31,8 @@ class profiles::vpn::server (
         hasstatus => true,
         enable    => true,
     }
+
+    create_resources(profiles::vpn::client_config, $client_configs)
 
     # Accept all via vpn
     firewall { '200 accept input via VPN':
