@@ -1,8 +1,7 @@
 # Creates client config files on OpenVPN server
 define profiles::vpn::client_config (
-    $config
+    $ips
 ) {
-    $ips = $config[$name]['ips']
     file { "/etc/openvpn/client-configs/${name}":
         ensure  => present,
         owner   => 'root',
